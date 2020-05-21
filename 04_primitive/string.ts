@@ -5,15 +5,21 @@ world`
 
 function toUpper(literals: TemplateStringsArray, ...placeholders: string[]) {
   console.log(literals, placeholders);
-  let res = "";
+  // let res = "";
   // for (let i = 0; i < placeholders.length; i++) {
   //   res += literals[i];
   //   res += placeholders[i].toUpperCase();
   // }
-  for (const [i, placeholder] of placeholders.entries()) {
-    res += literals[i];
-    res += placeholder.toUpperCase();
-  }
+  // for (const [i, placeholder] of placeholders.entries()) {
+  //   res += literals[i];
+  //   res += placeholder.toUpperCase();
+  // }
+  let res = placeholders.reduce(
+    (acc: string, placeholder: string, i: number) => {
+      return acc + literals[i] + placeholder.toUpperCase();
+    },
+    ""
+  );
   res += literals[literals.length - 1];
   return res;
 }
